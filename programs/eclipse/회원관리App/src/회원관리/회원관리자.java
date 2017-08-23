@@ -1,0 +1,35 @@
+package 회원관리;
+
+
+import java.util.*;
+
+/**
+ * 
+ */
+public class 회원관리자 {
+
+    /**
+     * Default constructor
+     */
+    public 회원관리자() {
+    }
+
+    /**
+     * @param 새회원
+     */
+    public void 등록하다(회원 새회원) {
+        // 업무규칙검사
+    	if(새회원.get성명().equals("김철수")) {
+    		//에러처리
+    		return;
+    		
+    	}
+    	//정상시
+    	회원DAO 한회원DAO = new 회원DAO();
+    	한회원DAO.저장하다(새회원);
+    	
+    	
+    	
+    }
+
+}
