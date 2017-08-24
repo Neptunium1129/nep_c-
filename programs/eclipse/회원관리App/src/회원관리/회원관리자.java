@@ -31,5 +31,17 @@ public class 회원관리자 {
     	
     	
     }
+    
+    public List<회원> 회원목록을수집하다(){
+    	//업무규칙검사
+    	
+    	
+    	//출력
+    	회원DAO 한회원DAO = new 회원DAO();
+    	return 한회원DAO.모든회원목록을모으다();
+    	
+    	
+    	
+    }
 
 }
