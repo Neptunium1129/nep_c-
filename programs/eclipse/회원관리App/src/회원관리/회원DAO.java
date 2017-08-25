@@ -48,6 +48,33 @@ public class 회원DAO {
     	
     }
     
+    public void 변경하다(회원 변경회원) {
+        // TODO implement here
+		String sql = String.format("update 회원 set 성명='%s', 전화='%s' where 번호=%d",변경회원.get성명(), 변경회원.get전화(),변경회원.get번호());
+		System.out.println(sql);
+		try {
+			//연결준비
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			//연결
+			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/userdb","root","");
+			
+			Statement st = con.createStatement();
+		
+			st.executeUpdate(sql);
+			System.out.println(con+"연결");
+			
+			//연결x
+			con.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+    	
+    	
+    }
+    
     public List<회원> 모든회원목록을모으다(){
     	ArrayList<회원> 회원들 = new ArrayList<회원>();
     	//

@@ -24,8 +24,9 @@ public class 회원등록창 extends JFrame {
 		//프레임 초기화
 		this.setTitle("회원 등록");
 		this.setLayout(null);
-		this.setSize(500, 500);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.setBounds(100, 100, 500, 500);
+
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		초기화하다();
    }
@@ -83,6 +84,7 @@ public class 회원등록창 extends JFrame {
    
    private void 등록하다() {
 	   
+	 
 	   String 성명 = 성명필드.getText();
 	   String 전화 = 전화필드.getText();
 	   
@@ -98,8 +100,8 @@ public class 회원등록창 extends JFrame {
    private void 목록보기() {
 	   
 	   
-		회원목록창 한회원목록창 = new 회원목록창();
-		한회원목록창.setVisible(true);
+	//	회원목록창 한회원목록창 = new 회원목록창();
+	//	한회원목록창.setVisible(true);
 		
    }
 	

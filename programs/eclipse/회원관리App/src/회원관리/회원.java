@@ -52,5 +52,14 @@ public class 회원 {
      * 
      */
     private String 전화;
+    private String 대상번호;
+
+	public String get대상번호() {
+		return 대상번호;
+	}
+
+	public void set대상번호(String 대상번호) {
+		this.대상번호 = 대상번호;
+	}
 
 }

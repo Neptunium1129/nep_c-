@@ -24,9 +24,23 @@ public class 회원관리자 {
     		return;
     		
     	}
+    	if(새회원.get성명().equals("")||새회원.get전화().equals("")) {
+    		return;
+    	}
     	//정상시
     	회원DAO 한회원DAO = new 회원DAO();
     	한회원DAO.저장하다(새회원);
+    	
+    	
+    	
+    }
+    
+    public void 변경하다(회원 변경회원) {
+        // 업무규칙검사
+    	
+    	//정상시
+    	회원DAO 한회원DAO = new 회원DAO();
+    	한회원DAO.변경하다(변경회원);
     	
     	
     	
@@ -43,5 +57,7 @@ public class 회원관리자 {
     	
     	
     }
+    
+    
 
 }
