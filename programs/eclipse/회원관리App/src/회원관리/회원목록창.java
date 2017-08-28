@@ -101,6 +101,7 @@ public class 회원목록창 extends JFrame {
 			// TODO Auto-generated method stub
 			int 선택된행 = 회원목록표.getSelectedRow(); //행번호
 	   		int 선택된열 = 회원목록표.getSelectedColumn(); //열번호
+	   		System.out.println(선택된행+"/"+선택된열);
 	     	 DefaultTableModel 테이블모델 = (DefaultTableModel) 회원목록표.getModel();
 	    	 int 번호 =(int) 테이블모델.getValueAt(선택된행, 0);//그걸 줌
 	    	 String 성명 = (String) 테이블모델.getValueAt(선택된행, 1);

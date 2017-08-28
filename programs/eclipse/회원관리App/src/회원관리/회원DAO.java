@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
 
+import 설정.데이터설정;
+
 /**
  * 
  */
@@ -30,7 +32,7 @@ public class 회원DAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			//연결
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/userdb","root","");
+			Connection con = DriverManager.getConnection(데이터설정.연결문자열,데이터설정.ID,데이터설정.Password);
 			
 			Statement st = con.createStatement();
 		
@@ -57,7 +59,7 @@ public class 회원DAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			//연결
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/userdb","root","");
+			Connection con = DriverManager.getConnection(데이터설정.연결문자열,데이터설정.ID,데이터설정.Password);
 			
 			Statement st = con.createStatement();
 		
@@ -97,7 +99,7 @@ public class 회원DAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			//연결
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/userdb","root","");
+			Connection con = DriverManager.getConnection(데이터설정.연결문자열,데이터설정.ID,데이터설정.Password);
 			
 			Statement st = con.createStatement();
 		

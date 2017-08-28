@@ -17,7 +17,7 @@ public class 회원등록창 extends JFrame {
 	
 	JTextField 성명필드;
 	JTextField 전화필드;
-	JButton 등록버튼,목록버튼;
+	JButton 등록버튼,닫기버튼;
 	
    public 회원등록창() {
 	   self=this;
@@ -53,9 +53,11 @@ public class 회원등록창 extends JFrame {
 	   등록버튼 = new JButton("등록");
 	   등록버튼.setBounds(200, 150, 100, 30);
 	   this.add(등록버튼);
-	   목록버튼 = new JButton("목록");
-	   목록버튼.setBounds(200, 200, 100, 30);
-	   this.add(목록버튼);
+	   
+	   닫기버튼 = new JButton("닫기");
+	   닫기버튼.setBounds(200, 200, 100, 30);
+	   this.add(닫기버튼);
+
 	   
 	   등록버튼.addActionListener(new ActionListener() {
 		
@@ -67,17 +69,18 @@ public class 회원등록창 extends JFrame {
 		}
 	});
 	   
-	   목록버튼.addActionListener(new ActionListener() {
+	   닫기버튼.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			목록보기();
+			
+			닫기();
+			
 			
 		}
 	});
-		
-		
+
 
 	   
    }
@@ -96,13 +99,11 @@ public class 회원등록창 extends JFrame {
 	   한회원관리자.등록하다(새회원);
 	   
    }
-   
-   private void 목록보기() {
+   private void 닫기() {
+	   
+	   this.dispose();
 	   
 	   
-	//	회원목록창 한회원목록창 = new 회원목록창();
-	//	한회원목록창.setVisible(true);
-		
    }
 	
 	

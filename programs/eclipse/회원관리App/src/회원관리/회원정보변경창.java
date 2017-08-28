@@ -110,17 +110,18 @@ public class 회원정보변경창 extends JFrame {
 				// TODO Auto-generated method stub
 			if(전화필드.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "비어있습니다.");
+				return;
 				
 			}else if(전화필드.getText().length()>12) {
 				
 				JOptionPane.showMessageDialog(null, "12자가 넘습니다.");
-				
+				return;
 			}
 			
 			else {
 				변경하다();
 				JOptionPane.showMessageDialog(null, "변경됬습니다.");
-				
+				return;
 			}
 				
 				
