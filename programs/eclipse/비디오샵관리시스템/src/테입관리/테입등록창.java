@@ -98,6 +98,28 @@ public class 테입등록창 extends JFrame {
 		테입등록버튼 = new JButton("테입등록");
 		테입등록버튼.setBounds(125, 350, 100, 30);
 		box.add(테입등록버튼);
+		
+		테입등록버튼.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				테입등록();
+				
+				
+			}
+		});
+	}
+	
+	private void 테입등록() {
+		테입관리 한테입관리 = new 테입관리();
+		테입 새테입 = new 테입();
+		String 콤보내용 = (String) 상태콤보.getSelectedItem();
+
+	//	한테입관리.테입을등록하다(새테입);
+		System.out.println(새테입.get상태());
+		
+		
 	}
 	
 	private void 영화등록판넬초기화() {

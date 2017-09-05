@@ -19,17 +19,13 @@ public class 테입DAO {
 			Connection con = DriverManager.getConnection(데이터설정.연결문자열, 데이터설정.ID, 데이터설정.Password);
 			// 할일
 			
-			PreparedStatement pst = con.prepareStatement("insert into 테입 (상태,영화_번호) values(?,?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement pst = con.prepareStatement("insert into 테입 (상태,영화_번호) values(?,?)");
 			pst.setString(1, 새테입.get상태().toString());
 			pst.setInt(2, 새테입.get영화().get번호());
 			
 			pst.executeUpdate();
 
-			ResultSet 발생한번호 = pst.getGeneratedKeys();
-			System.out.println(발생한번호);
-			if(발생한번호.next()) {
-				새테입.set번호(발생한번호.getInt(1));
-			}
+		
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
