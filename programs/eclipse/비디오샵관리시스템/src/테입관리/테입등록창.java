@@ -2,6 +2,7 @@ package 테입관리;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -27,7 +28,10 @@ public class 테입등록창 extends JFrame {
 	JLabel 개봉라벨;
 	JLabel 장르라벨;
 	JLabel 상태라벨;
+	
 	JLabel 매입처라벨;
+	JLabel 매입일자라벨;
+	JLabel 영화번호라벨;
 
 	
 	JTabbedPane 영화탭팬;
@@ -39,7 +43,10 @@ public class 테입등록창 extends JFrame {
 	JTextField 감독필드;
 	JTextField 주연필드;
 	JTextField 개봉필드;
+	
 	JTextField 매입처필드;
+	JTextField 매입일자필드;
+	JTextField 영화번호필드;
 	
 	JComboBox 장르콤보,상태콤보;
 
@@ -88,12 +95,28 @@ public class 테입등록창 extends JFrame {
 		box.add(상태콤보);
 		
 		매입처라벨 = new JLabel("매입처");
-		매입처라벨.setBounds(80, 200, 50, 20);
+		매입처라벨.setBounds(80, 50, 50, 20);
 		box.add(매입처라벨);
 
 		매입처필드 = new JTextField();
-		매입처필드.setBounds(125, 200, 100, 25);
+		매입처필드.setBounds(125, 50, 100, 25);
 		box.add(매입처필드);
+		
+		매입일자라벨 = new JLabel("매입일자");
+		매입일자라벨.setBounds(70, 80, 70, 20);
+		box.add(매입일자라벨);
+		
+		매입일자필드 = new JTextField();
+		매입일자필드.setBounds(125, 80, 100, 25);
+		box.add(매입일자필드);
+		
+		영화번호라벨= new JLabel("영화번호");
+		영화번호라벨.setBounds(70, 120, 70, 20);
+		box.add(영화번호라벨);
+		
+		영화번호필드 = new JTextField();
+		영화번호필드.setBounds(125, 120, 100, 25);
+		box.add(영화번호필드);
 		
 		테입등록버튼 = new JButton("테입등록");
 		테입등록버튼.setBounds(125, 350, 100, 30);
@@ -114,10 +137,21 @@ public class 테입등록창 extends JFrame {
 	private void 테입등록() {
 		테입관리 한테입관리 = new 테입관리();
 		테입 새테입 = new 테입();
-		String 콤보내용 = (String) 상태콤보.getSelectedItem();
-
-	//	한테입관리.테입을등록하다(새테입);
-		System.out.println(새테입.get상태());
+		String 상태내용 = (String) 상태콤보.getSelectedItem();
+	//	System.out.println(상태내용);
+		String 매입일자 = 매입일자필드.getText();
+		String 매입처 = 매입처필드.getText();
+		String 대여여부 = "0";
+		Date date=java.sql.Date.valueOf(매입일자);
+		새테입.set매입일자(date);
+		새테입.set매입처(매입처);
+		새테입.set상태(상태내용);
+		새테입.set대여여부(대여여부);
+	//	System.out.println(date+상태내용+매입처);
+		
+		
+		
+		한테입관리.테입을등록하다(새테입);
 		
 		
 	}

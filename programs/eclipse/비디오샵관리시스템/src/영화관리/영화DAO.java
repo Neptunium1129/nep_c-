@@ -1,13 +1,19 @@
 package 영화관리;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import 설정.데이터설정;
+import 회원관리.회원;
 
 public class 영화DAO {
+	   장르DAO 한장르DAO = new 장르DAO();
 
 	public 영화DAO() {
 
@@ -39,6 +45,54 @@ public class 영화DAO {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public List<영화> 영화를수집하다By제목(String 유사영화명) {
+	      ArrayList<영화> 영화들 = new ArrayList<영화>();
+
+	    	String sql = "select * from 영화 where 제목 like '%"+유사영화명+"%'";
+
+	      System.out.println(sql);
+	      try {
+	    	  Class.forName("com.mysql.jdbc.Driver");
+
+				// 연결
+				Connection con = DriverManager.getConnection(데이터설정.연결문자열, 데이터설정.ID, 데이터설정.Password);
+				Statement st = con.createStatement();
+
+				ResultSet 영화행들= st.executeQuery(sql);
+				
+				while(영화행들.next()) {
+					
+					int 번호 = 영화행들.getInt("번호");
+					String 제목 = 영화행들.getString("제목");
+					String 감독 = 영화행들.getString("감독");
+					String 주연 = 영화행들.getString("주연");
+					
+					
+					//회원 객체로 변환
+					영화 영화_ = new 영화();
+					영화_.set번호(번호);
+					영화_.set제목(제목);
+					영화_.set감독(감독);
+					영화_.set주연(주연);
+					
+					
+					영화들.add(영화_);
+					
+				}
+				영화행들.close();
+				
+				
+				
+				//연결x
+				con.close();
+	      }catch (Exception e) {
+			// TODO: handle exception
+		}
+	      
+	      return 영화들;
+	
 	}
 
 }

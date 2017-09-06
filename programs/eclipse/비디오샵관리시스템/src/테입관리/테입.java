@@ -6,13 +6,20 @@ import 영화관리.영화;
 public class 테입 {
 	
 	private int 번호;
-	private String 매입처;
-	상태 상태;
-	public 상태 get상태() {
+	private String 매입처,대여여부;
+	String 상태;
+	public String get대여여부() {
+		return 대여여부;
+	}
+	public void set대여여부(String 대여여부) {
+		this.대여여부 = 대여여부;
+	}
+
+	public String get상태() {
 		return 상태;
 	}
-	public void set상태(상태 상태) {
-		this.상태 = 상태;
+	public void set상태(String 상태내용) {
+		this.상태 = 상태내용;
 	}
 	Date 매입일자;
 
@@ -41,5 +48,7 @@ public class 테입 {
 		this.매입처 = 매입처;
 	}
 	영화 영화;
+	
+
 
 }
