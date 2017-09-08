@@ -79,7 +79,7 @@ public class 테입등록창 extends JFrame {
 		this.setTitle("테입 등록");
 		this.setLayout(null);
 		this.setBounds(100, 100, 800, 450);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		초기화하다();
 	}
 

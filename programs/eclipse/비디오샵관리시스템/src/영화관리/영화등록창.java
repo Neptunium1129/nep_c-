@@ -51,7 +51,7 @@ public class 영화등록창 extends JFrame {
 		this.setTitle("영화 등록");
 		this.setLayout(null);
 		this.setBounds(100, 100, 500, 500);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		초기화하다();
 
 	}

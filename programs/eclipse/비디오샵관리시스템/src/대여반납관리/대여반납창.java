@@ -15,6 +15,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -26,8 +29,11 @@ import javax.swing.table.DefaultTableModel;
 
 import util.NonEditableTableModel;
 import 영화관리.영화;
+import 영화관리.영화등록창;
 import 테입관리.테입;
+import 테입관리.테입등록창;
 import 회원관리.회원;
+import 회원관리.회원등록창;
 
 public class 대여반납창 extends JFrame {
 	대여관리자 한대여관리 = new 대여관리자();
@@ -47,6 +53,7 @@ public class 대여반납창 extends JFrame {
 	JButton 영화조회버튼;
 	JButton 목록삭제;
 	JButton 대여등록버튼;
+	JButton 리셋버튼;
 
 	JTabbedPane 탭팬;
 	JPanel 대여판넬;
@@ -63,13 +70,78 @@ public class 대여반납창 extends JFrame {
 		대여반납창self = this;
 		this.setTitle("대여/반납");
 		this.setLayout(null);
-		this.setSize(700, 500);
+		this.setSize(700, 530);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		탭팬 = new JTabbedPane();
 		탭팬.setBounds(10, 100, 660, 350);
 		this.add(탭팬);
+		메뉴초기화하다();
 		초기화하다();
 
+	}
+private void 메뉴초기화하다() {
+		
+		JMenuBar 메뉴바 = new JMenuBar();
+		this.setJMenuBar(메뉴바);
+		
+		JMenu 메뉴1 = new JMenu("다른기능");
+		메뉴바.add(메뉴1);
+		
+		JMenuItem 아이템1 = new JMenuItem("회원등록");
+		메뉴1.add(아이템1);
+		메뉴1.addSeparator();
+		
+		아이템1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				회원등록창 회창 = new 회원등록창();
+				회창.setVisible(true);
+			}
+		});
+
+		JMenuItem 아이템2 = new JMenuItem("영화등록");
+		메뉴1.add(아이템2);
+		메뉴1.addSeparator();
+		아이템2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				영화등록창 영창 = new 영화등록창();
+				영창.setVisible(true);
+				
+			}
+		});
+		
+		JMenuItem 아이템3 = new JMenuItem("테입등록");
+		메뉴1.add(아이템3);
+		메뉴1.addSeparator();
+		아이템3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				테입등록창 테창 = new 테입등록창();
+				테창.setVisible(true);
+			}
+		});
+
+		
+		JMenu 메뉴2 = new JMenu("메뉴2");
+		메뉴1.add(메뉴2);
+		JMenuItem 아이템4 = new JMenuItem("아이템4");
+		메뉴2.add(아이템4);
+		아이템3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("아이템4");
+			}
+		});
+		
 	}
 
 	private void 초기화하다() {
@@ -171,6 +243,20 @@ public class 대여반납창 extends JFrame {
 		영화조회버튼 = new JButton("조회");
 		영화조회버튼.setBounds(280, 25, 80, 20);
 		box.add(영화조회버튼);
+		
+	리셋버튼 = new JButton("리셋");
+	리셋버튼.setBounds(370, 25, 80, 20);
+	box.add(리셋버튼);
+	
+	리셋버튼.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			영화명필드.setText("");
+			
+		}
+	});
 
 		영화조회버튼.addActionListener(new ActionListener() {
 
