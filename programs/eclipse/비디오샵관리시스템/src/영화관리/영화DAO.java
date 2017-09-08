@@ -116,16 +116,6 @@ public class 영화DAO {
 				Statement st = con.createStatement();
 				
 				ResultSet rs = st.executeQuery(sql);
-				
-			/*	System.out.println("!!!!"+rs);
-				
-				if (rs.next()) {
-					System.out.println("!!!!"+rs.getString("제목"));
-					String 제목 = rs.getString("제목");
-					영화 한영화 = new 영화();
-					한영화.set제목(제목);
-				}*/
-				
 			
 				while(rs.next()) {
 					//각 행 읽기
@@ -148,8 +138,6 @@ public class 영화DAO {
 					찾은영화.set개봉일(개봉일);
 					찾은영화.set장르(찾은장르);
 					
-					System.out.println("@@@@@"+찾은영화.get제목());
-
 				}
 				rs.close();				
 				//3.연결X

@@ -35,22 +35,12 @@ public class 회원관리자 {
     	
     }
     
-    public List<회원> 회원출력By성명(String 회원이름) {
+    public List<회원> 회원을조회하다By성명_전화번호(String 회원이름, String 전화번호) {
    
-    	return 한회원DAO.회원찾기(회원이름);
+    	return 한회원DAO.회원을수집하다By성명_전화번호(회원이름,전화번호);
     }
    
-    public List<회원> 회원목록을수집하다(){
-    	//업무규칙검사
-    	
-    	
-    	//출력
-    	
-    	return 한회원DAO.모든회원목록을모으다();
-    	
-    	
-    	
-    }
+
     
     
 

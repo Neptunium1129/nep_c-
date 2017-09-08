@@ -62,9 +62,11 @@ public class 영화선택창 extends JDialog {
 				int 선택된행 = 영화목록표.getSelectedRow();
 				
 				if(e.getClickCount()==2) {
+					
 					DefaultTableModel 테이블모델 = (DefaultTableModel)영화목록표.getModel();
-					부모대여반납창.영화를받다(영화들.get(선택된행));
 					영화선택창self.dispose();
+					부모대여반납창.영화를받다(영화들.get(선택된행));
+					
 
 					
 				}

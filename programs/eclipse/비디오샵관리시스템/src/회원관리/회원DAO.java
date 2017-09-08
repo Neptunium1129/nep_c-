@@ -77,9 +77,11 @@ public class 회원DAO {
     	
     }
     
-    public List<회원> 회원찾기(String 회원이름){
+    public List<회원> 회원을수집하다By성명_전화번호(String 회원이름,String 전화번호){
     	ArrayList<회원> 회원들 = new ArrayList<회원>();
-    	String sql = "select * from 회원 where 성명 like '%"+회원이름+"%'";
+		String 조건문=((회원이름!=null)?"회원.성명 like '%"+회원이름+"%'":"");
+		조건문=조건문+(조건문.length()>0?" ":"")+((전화번호!=null)?"회원.전화번호='"+전화번호+"'":"");
+		조건문=(조건문.length()>0)?" where "+조건문:"";
     	String sql_base = "select * from 회원";
     	/*
     	 String 조건문=((유사성명!=null)?"회원.성명 like '%"+유사성명+"%'":"");
@@ -87,7 +89,7 @@ public class 회원DAO {
 		조건문=(조건문.length()>0)?" where "+조건문:"";
     	 * 
     	 */
-    	System.out.println(sql);
+    	System.out.println(조건문);
     	
     	try {
 			//연결준비
@@ -98,7 +100,7 @@ public class 회원DAO {
 			
 			Statement st = con.createStatement();
 		
-			ResultSet 회원행들= st.executeQuery(sql);
+			ResultSet 회원행들= st.executeQuery(sql_base+조건문);
 			
 			while(회원행들.next()) {
 				

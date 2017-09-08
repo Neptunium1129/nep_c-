@@ -32,7 +32,7 @@ public class 테입선택창 extends JDialog {
 		//this.setSize(600, 600);
 	    this.setBounds(500, 100, 400, 400);	
 	    초기화하다();
-	 	테입들을출력하다(영화번호,영화명);
+	 	테입들을출력하다(영화번호);
 	 	System.out.println("#"+영화번호);
 	}
 	
@@ -60,14 +60,16 @@ public class 테입선택창 extends JDialog {
 	   		@Override
 	   		public void mouseClicked(MouseEvent e) {
 				
-				int 선택된행2 = 테입목록표.getSelectedRow();
+				int 선택된행 = 테입목록표.getSelectedRow();
 				
 				if(e.getClickCount()==2) {
 					DefaultTableModel 테이블모델 = (DefaultTableModel)테입목록표.getModel();
 					//부모대여반납창.테입을받다(테입들.get(선택된행2));
-					System.out.println(테입들.get(선택된행2).get번호());
-					부모대여반납창.테입을받다(테입들.get(선택된행2));
-					테입선택창self.dispose();
+					System.out.println(테입들.get(선택된행).get번호());
+					boolean 정상처리 = 부모대여반납창.테입을받다(테입들.get(선택된행));
+			    	if(정상처리) {
+    		    		테입선택창self.dispose();
+    		    	}
 
 				}
 				
@@ -78,8 +80,7 @@ public class 테입선택창 extends JDialog {
 		
 		
 	}
-	private void 테입들을출력하다(int 영화번호 ,String 영화명) {
-		System.out.println("테입출력"+영화번호+영화명);
+	private void 테입들을출력하다(int 영화번호) {
 		테입들=한테입관리자.테입을조회하다By영화번호(영화번호);
 		DefaultTableModel 테이블모델= (DefaultTableModel) 테입목록표.getModel();
 		for(테입 한테입:테입들) {

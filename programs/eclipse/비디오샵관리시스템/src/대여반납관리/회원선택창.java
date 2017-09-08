@@ -31,7 +31,7 @@ public class 회원선택창 extends JDialog {
 		//this.setSize(600, 600);
 	    this.setBounds(500, 100, 400, 400);	
 	     초기화하다();
-	    회원들을출력하다(회원이름);
+	     회원들을출력하다(회원이름,전화);
 	}
 	
 	private void 초기화하다() {
@@ -70,8 +70,8 @@ public class 회원선택창 extends JDialog {
 		}
 	
 	
-	private void 회원들을출력하다(String 회원이름) {
-		회원들=한회원관리.회원출력By성명(회원이름);
+	private void 회원들을출력하다(String 회원이름, String 전화번호) {
+		회원들=한회원관리.회원을조회하다By성명_전화번호(회원이름, 전화번호);
 		DefaultTableModel 테이블모델= (DefaultTableModel) 회원목록표.getModel();
 		for(회원 한회원:회원들) {
 			Object[] 행 = {한회원.get성명(),한회원.get전화()};

@@ -57,7 +57,7 @@ public class 테입DAO {
 	     // ArrayList<테입> 테입들 = new ArrayList<테입>();
 	  	List<테입> 테입들=new ArrayList<테입>();
 	    //  String sql = "select * from 테입 where 영화_번호 ='"+영화번호+"'";
-	      String sql = String.format("select * from 테입 where 영화_번호 =%d", 영화번호);
+	      String sql = String.format("select * from 테입 where 테입.영화_번호 =%d", 영화번호);
 	      System.out.println(sql);
 	      
 	      try {
@@ -80,10 +80,8 @@ public class 테입DAO {
 					테입상태 상태 = 테입상태.valueOf(테입행들.getString("상태"));
 					Date 매입일자 = 테입행들.getDate("매입일자");
 					int 영화_번호=테입행들.getInt("영화_번호");
-					Boolean 대여여부 = 테입행들.getBoolean("대여여부");
-					System.out.println(대여여부);
+					boolean 대여여부 = 테입행들.getBoolean("대여여부");
 					영화 찾은영화 = 한영화DAO.찾다By번호(영화_번호);
-					System.out.println("@@@@"+찾은영화.get제목());
 					테입 테입_ = new 테입();
 					테입_.set번호(번호);
 					테입_.set상태(상태);

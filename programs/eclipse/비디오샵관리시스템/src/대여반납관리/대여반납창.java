@@ -130,7 +130,8 @@ public class 대여반납창 extends JFrame {
 		// System.out.println();
 
 		String 회원이름 = 성명필드.getText().trim();
-		// if(회원이름.length()==0){
+		
+		 //if(회원이름.length()==0){
 
 		// return;
 		// }

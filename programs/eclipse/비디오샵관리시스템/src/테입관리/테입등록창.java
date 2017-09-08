@@ -372,8 +372,8 @@ public class 테입등록창 extends JFrame {
 
 	private void 영화조회하기() {
 		String 영화제목 = 영화조회필드.getText();
-		테입관리 테입영화조회 = new 테입관리();
-		영화들 = 테입영화조회.영화를조회하다By영화제목(영화제목);
+		영화관리자 테입영화조회 = new 영화관리자();
+		영화들 = 테입영화조회.영화를조회하다By제목(영화제목);
 
 		DefaultTableModel 테이블모델 = (DefaultTableModel) 영화조회목록표.getModel();
 		테이블모델.setRowCount(0);
