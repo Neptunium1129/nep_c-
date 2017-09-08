@@ -19,8 +19,9 @@ public class 장르등록창 extends JDialog {
 	JLabel 장르라벨;
 	JTextField 장르필드;
 	JButton 등록버튼, 닫기버튼;
-	
-	public 장르 등록된장르=null;
+
+	public 장르 등록된장르 = null;
+
 	public 장르등록창() {
 		초기화하다();
 	}
@@ -76,34 +77,31 @@ public class 장르등록창 extends JDialog {
 
 			}
 		});
-		
-	
 
 	}
 
 	private void 등록하다() {
 		등록된장르 = null;
 		String 장르 = 장르필드.getText();
-		
-		if(장르.trim().length()==0) {
-			JOptionPane.showMessageDialog(장르등록창self, "장르명은 필수 입력입니다.","에러",JOptionPane.OK_OPTION);
+
+		if (장르.trim().length() == 0) {
+			JOptionPane.showMessageDialog(장르등록창self, "장르명은 필수 입력입니다.", "에러", JOptionPane.OK_OPTION);
 			return;
 		}
-		
+
 		장르 새장르 = new 장르();
 		새장르.set이름(장르);
 
 		장르관리 한장르관리 = new 장르관리();
 		Result 결과 = 한장르관리.등록하다(새장르);
-		if(결과.resultCode!=1) {
-			JOptionPane.showMessageDialog(장르등록창self, 결과.message,"에러",JOptionPane.OK_OPTION);
+		if (결과.resultCode != 1) {
+			JOptionPane.showMessageDialog(장르등록창self, 결과.message, "에러", JOptionPane.OK_OPTION);
 			return;
 		}
-		등록된장르=새장르;
-		JOptionPane.showMessageDialog(장르등록창self,"등록되었습니다.","등록됨",JOptionPane.OK_OPTION);
-		
-		장르등록창self.dispose();
+		등록된장르 = 새장르;
+		JOptionPane.showMessageDialog(장르등록창self, "등록되었습니다.", "등록됨", JOptionPane.OK_OPTION);
 
+		장르등록창self.dispose();
 
 	}
 

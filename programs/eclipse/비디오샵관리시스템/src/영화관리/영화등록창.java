@@ -128,19 +128,17 @@ public class 영화등록창 extends JFrame {
 				장르등록창 장르등록창 = new 장르등록창(영화등록창self);
 				장르등록창.setVisible(true);
 				장르를출력하다(장르등록창.등록된장르);
-				
-				
 
 			}
 		});
-		
+
 		닫기버튼.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				영화등록창self.dispose();
-				
+
 			}
 		});
 
@@ -157,7 +155,7 @@ public class 영화등록창 extends JFrame {
 		장르Item 선택된장르Item = (장르Item) 장르콤보.getSelectedItem();
 		장르 선택된장르 = 선택된장르Item.장르;
 		int 장르 = 선택된장르.get번호();
-		
+
 		System.out.println(장르);
 
 		영화 새영화 = new 영화();
@@ -165,10 +163,10 @@ public class 영화등록창 extends JFrame {
 		새영화.set부제(부제);
 		새영화.set감독(감독);
 		새영화.set주연(주연);
-	
-		Date date=java.sql.Date.valueOf(개봉);
+
+		Date date = java.sql.Date.valueOf(개봉);
 		새영화.set개봉일((java.sql.Date) date);
-		
+
 		새영화.set장르_번호(장르);
 
 		영화관리자 한영화관리자 = new 영화관리자();
@@ -183,12 +181,11 @@ public class 영화등록창 extends JFrame {
 		for (장르 한장르 : 장르들) {
 			장르Item 한장르Item = new 장르Item(한장르);
 			장르콤보.addItem(한장르Item);
-			if(선택될장르 !=null && 선택될장르.get번호()==한장르.get번호()) {
+			if (선택될장르 != null && 선택될장르.get번호() == 한장르.get번호()) {
 				장르콤보.setSelectedItem(한장르Item);
 			}
 
 		}
-	
 
 	}
 	// 데이터바인딩

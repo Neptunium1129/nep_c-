@@ -40,6 +40,7 @@ public class 영화선택창 extends JDialog {
 		   DefaultTableModel 테이블모델 = new NonEditableTableModel(); 
 		   테이블모델.addColumn("영화번호");
 		   테이블모델.addColumn("영화명");
+		   테이블모델.addColumn("장르");
 		   테이블모델.addColumn("감독");
 		   테이블모델.addColumn("주연");
 		
@@ -64,11 +65,7 @@ public class 영화선택창 extends JDialog {
 					DefaultTableModel 테이블모델 = (DefaultTableModel)영화목록표.getModel();
 					부모대여반납창.영화를받다(영화들.get(선택된행));
 					영화선택창self.dispose();
-					
-					int 영화번호 = 영화들.get(선택된행).get번호();
-					System.out.println(영화번호);
-					테입선택창 테창 = new 테입선택창(영화선택창self,영화번호);
-					테창.setVisible(true);
+
 					
 				}
 				
@@ -85,7 +82,7 @@ public class 영화선택창 extends JDialog {
 		영화들=한영화관리자.영화를조회하다By제목(유사영화명);
 		DefaultTableModel 테이블모델= (DefaultTableModel) 영화목록표.getModel();
 		for(영화 한영화:영화들) {
-			Object[] 행 = {한영화.get번호(),한영화.get제목(),한영화.get감독(),한영화.get주연()};
+			Object[] 행 = {한영화.get번호(),한영화.get제목(),한영화.get장르().get이름(),한영화.get감독(),한영화.get주연()};
 
 				테이블모델.addRow(행);
 		

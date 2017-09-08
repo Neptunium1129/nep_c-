@@ -5,22 +5,37 @@ import 영화관리.영화;
 
 public class 테입 {
 	
-	private int 번호;
-	private String 매입처,대여여부;
-	String 상태;
-	public String get대여여부() {
+	private int 번호,영화_번호;
+	public int get영화_번호() {
+		return 영화_번호;
+	}
+	public void set영화_번호(int 영화_번호) {
+		this.영화_번호 = 영화_번호;
+	}
+	private String 매입처,상태내용;
+	public String get상태내용() {
+		return 상태내용;
+	}
+	public void set상태내용(String 상태내용) {
+		this.상태내용 = 상태내용;
+	}
+	테입상태 상태;
+	
+	public 테입상태 get상태() {
+		return 상태;
+	}
+	public void set상태(테입상태 상태) {
+		this.상태 = 상태;
+	}
+	boolean 대여여부;
+
+	public boolean is대여여부() {
 		return 대여여부;
 	}
-	public void set대여여부(String 대여여부) {
+	public void set대여여부(boolean 대여여부) {
 		this.대여여부 = 대여여부;
 	}
 
-	public String get상태() {
-		return 상태;
-	}
-	public void set상태(String 상태내용) {
-		this.상태 = 상태내용;
-	}
 	Date 매입일자;
 
 	public Date get매입일자() {
