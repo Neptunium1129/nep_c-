@@ -1,12 +1,17 @@
 package 대여반납관리;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import 설정.데이터설정;
+import 영화관리.영화;
+import 영화관리.장르;
 
 public class 대여반납DAO {
 
@@ -37,6 +42,9 @@ public class 대여반납DAO {
 			 e.printStackTrace();
 		}
 		
-		
 	}
+	
+	
+	
+
 }

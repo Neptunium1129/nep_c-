@@ -49,21 +49,26 @@ public class 대여반납창 extends JFrame {
 	JLabel 영화명라벨;
 	JTextField 영화명필드;
 
+	JLabel 반납라벨,반납라벨_대여;
+	
 	JButton 회원조회버튼;
 	JButton 영화조회버튼;
 	JButton 목록삭제;
 	JButton 대여등록버튼;
 	JButton 리셋버튼;
+	JButton 반납버튼,반납취소버튼,반납패널대여버튼;
 
 	JTabbedPane 탭팬;
 	JPanel 대여판넬;
 	JPanel 반납판넬;
 
-	JTable 목록표;
+	JTable 목록표,미반납테입목록,반납테입목록;
 	회원 대상회원;
 	영화 대상영화;
 	테입 대상테입;
 	대여반납 한대여반납;
+	
+	List<대여반납> 미반납테입;
 
 
 	public 대여반납창() {
@@ -328,10 +333,56 @@ private void 메뉴초기화하다() {
 
 	}
 
-	private void 판넬2초기화하다() {
+	private void 판넬2초기화하다() { // 	JButton 반납버튼,반납취소버튼,반납패널대여버튼;
+
 		반납판넬 = new JPanel();
 		반납판넬.setLayout(null);
 		탭팬.add("반납", 반납판넬);
+		
+		반납라벨 = new JLabel("- 반납");
+		반납라벨.setBounds(10, 20, 100, 20);
+		반납판넬.add(반납라벨);
+		
+		반납라벨_대여 = new JLabel("- 대여");
+		반납라벨_대여.setBounds(10, 170, 100, 20);
+		반납판넬.add(반납라벨_대여);
+		
+		반납버튼 = new JButton("반납");
+		반납버튼.setBounds(520, 50, 100, 20);
+		반납판넬.add(반납버튼);
+		
+		반납취소버튼 = new JButton("반납취소");
+		반납취소버튼.setBounds(520,90, 100, 20);
+		반납판넬.add(반납취소버튼);
+		
+		반납패널대여버튼 = new JButton("대여");
+		반납패널대여버튼.setBounds(520, 200, 100, 20);
+		반납판넬.add(반납패널대여버튼);
+		
+		DefaultTableModel 테이블모델 = new NonEditableTableModel();
+		테이블모델.addColumn("테입번호");
+		테이블모델.addColumn("영화명");
+		테이블모델.addColumn("대여일자");
+		테이블모델.addColumn("반납예정일");
+		//
+		목록표 = new JTable(테이블모델);
+		목록표.setFillsViewportHeight(true);
+		목록표.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//
+		JScrollPane 미반납테입목록 = new JScrollPane(목록표);
+		미반납테입목록.setBounds(10, 40, 500, 120);
+		반납판넬.add(미반납테입목록);
+		
+		목록표 = new JTable(테이블모델);
+		목록표.setFillsViewportHeight(true);
+		목록표.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//
+		JScrollPane 반납테입목록 = new JScrollPane(목록표);
+		반납테입목록.setBounds(10, 190, 500, 120);
+		반납판넬.add(반납테입목록);
+		
+		
+		
 
 	}
 
@@ -340,6 +391,19 @@ private void 메뉴초기화하다() {
 		한대여반납.set회원VO(한회원);
 		성명필드.setText(한회원.get성명());
 		전화필드.setText(한회원.get전화());
+		
+		System.out.println(한회원.get번호());
+		
+	
+	/*  미반납테입들=대여관리자.
+		DefaultTableModel 테이블모델 = (DefaultTableModel) 미반납테입목록.getModel();
+		테이블모델.setRowCount(0);
+		for (영화 한영화 : 영화들) {
+			Object[] 행 = { 한영화.get번호(), 한영화.get제목() };
+
+			테이블모델.addRow(행);
+
+		}*/
 
 	}
 
