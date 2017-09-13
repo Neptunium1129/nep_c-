@@ -2,23 +2,36 @@ package com.celab.게시물관리.업무서비스;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.celab.게시물관리.공통.게시물;
+import com.celab.게시물관리.데이터서비스.게시물DAO;
 
 @Service
-public class 게시물관리 {
 
+public class 게시물관리 {
+	@Autowired
+	게시물DAO 게시물DAO;
+    //게시물DAO 한게시물DAO = new 게시물DAO();
 
 	//게시물들 수집
 	public List<게시물> 모든게시물을수집하다(){
-		System.out.println("게시물수집 프린트ln");
-		return null;
+		
+		return 게시물DAO.모든게시물수집하다();
 	}
 
 	//게시물(게시물번호)수집						
 	public 게시물 게시물수집하다By게시물번호(int 게시물번호) {
-		return null;
+		//test
+		
+		게시물 게시물 = new 게시물();
+		게시물.set번호(게시물번호);
+		게시물.set제목("게시물" + String.valueOf(게시물번호));
+		게시물.set내용("안녕" + String.valueOf(게시물번호));
+		
+		
+		return 게시물;
 	}
 	
 	//게시물 변경
