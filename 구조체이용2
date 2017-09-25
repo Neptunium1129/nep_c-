@@ -1,0 +1,49 @@
+//구조체 이용2
+
+
+#include <stdio.h>
+#include <string.h>
+struct 학생 {
+
+	int 번호;
+	char 성명[20];
+
+};
+void 학생을초기화하다1(struct 학생* z) {
+	z->번호 = 0;
+	memset(z->성명, '\0', 20);
+}
+/*
+void 학생을초기화하다2(struct 학생 z ) {
+	z.번호 = 0;
+	memset(z.성명, '\0', 20);
+}
+*/
+
+void main() {
+	struct 학생 b;
+	b.번호 = 9;
+	/*
+	학생을초기화하다2(b);
+	printf("%d \n", b.번호);
+	*/
+	학생을초기화하다1(&b);
+	printf("%d \n", b.번호);
+
+	strcpy(b.성명, "가길동");
+	printf("%s \n", b.성명);
+	/////////////////////////////
+	struct 학생 c;	
+	학생을초기화하다1(&c);
+	c.번호 = 2;
+	strcpy(b.성명, "나길동");
+
+	if (strcmp(b.성명, c.성명)==0) {
+		printf("같은 학생 \n");
+	}
+	else {
+		printf("다른 학생 \n");
+	}
+	printf("%d \n", b.번호);
+	getchar();
+}
