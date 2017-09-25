@@ -1,0 +1,179 @@
+//전화번호부 예제
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define 인원수 50
+#define null 0
+#define 찾음 1
+#define 못찾음 2
+#define 참 1
+#define 거짓 0
+
+typedef struct 사람_ {
+	char 성명[20];
+	char 전화번호[20];
+} 사람;
+
+사람* 사람들[인원수];
+
+typedef int 진리형;
+
+void 전화번호부시작() {
+
+	memset(사람들, 0, sizeof(사람들));
+}
+void 사람을초기화하다(사람* p사람) {
+	memset(p사람->성명, 0, sizeof(p사람->성명));
+	memset(p사람->전화번호, 0, sizeof(p사람->전화번호));
+}
+int 빈곳을찿다() {
+	int 위치 = 0;
+	while (위치 < 인원수) {
+		if (사람들[위치] == null) {
+			return 위치;
+		}
+		위치++;
+	}
+	return -1;
+}
+void 사람을등록하다(사람* p사람) {
+	int 위치 = 빈곳을찿다();
+	if (위치 != -1) {
+		사람들[위치] = p사람;
+	}
+}
+
+진리형 사람을삭제하다(char* 성명) {
+	진리형 삭제됨=거짓;
+	int 위치 = 0;
+	while (위치<인원수 && 사람들[위치] != 0 && 삭제됨 == 거짓) {
+		if (strcmp(사람들[위치]->성명, 성명) == 0) {
+			free(사람들[위치]);
+			사람들[위치] = 0;
+			삭제됨 = 참;
+		}
+		위치++;
+	}
+	return 삭제됨;
+}
+
+사람* 사람을찾다(char* 성명) {
+	사람* 찾은사람 = 0;
+	int 위치 = 0;
+	while (위치<인원수 && 사람들[위치]!=0 && 찾은사람==0) {
+		if (strcmp(사람들[위치]->성명, 성명) == 0) {
+			찾은사람 = 사람들[위치];
+		}
+		위치++;
+	}
+	return 찾은사람;
+}
+
+void 메뉴목록을출력하다() {
+	int 위치 = 0;
+	int 출력인원 = 0;
+	printf("====전화번호부 목록====\n");
+	while (위치 < 인원수) {
+		if (사람들[위치] != null) {
+			사람 * p사람 = 사람들[위치];
+			printf("%d: %s\t%s \n", 위치+1, p사람->성명, p사람->전화번호);
+			출력인원++;
+		}
+		위치++;
+	}
+	printf("===%d 명 출력됨.===\n", 출력인원);
+}
+
+void 메뉴등록하다() {
+	char 계속='y';
+	while (계속 == 'y') {
+		printf("\n==등록==");
+		printf("\n성명:");
+		char 성명[20] = { "\0" };
+		fflush(stdin);
+		scanf("%s", 성명);
+		printf("\n전화:");
+		char 전화[20] = { "\0" };
+		fflush(stdin);
+		scanf("%s", 전화);
+		사람 *p사람 = (사람*)malloc(sizeof(사람));
+		strcpy(p사람->성명, 성명);
+		strcpy(p사람->전화번호, 전화);
+		사람을등록하다(p사람);
+		printf("\n등록되었습니다.");
+		printf("\n계속:y/n?");
+		rewind(stdin);	
+		계속 = getchar();
+	}
+}
+void 메뉴조회하다() {
+	char 계속 = 'y';
+	while (계속 == 'y') {
+		printf("\n==조회==");
+		printf("\n성명:");
+		char 성명[20] = { "\0" };
+		fflush(stdin);
+		scanf("%s", 성명);
+		사람* 찾은사람 = 사람을찾다(성명);
+		if (찾은사람 == 0) {
+			printf("\n없는 사람입니다.");
+		}
+		else {
+			printf("\n%s, %s", 찾은사람->성명, 찾은사람->전화번호);
+		}
+		printf("\n계속:y/n?");
+		rewind(stdin);
+		계속 = getchar();
+	}
+}
+
+void 메뉴삭제하다() {
+	char 계속 = 'y';
+	while (계속 == 'y') {
+		printf("\n==삭제==");
+		printf("\n성명:");
+		char 성명[20] = { "\0" };
+		fflush(stdin);
+		scanf("%s", 성명);
+		진리형 삭제됨 = 사람을삭제하다(성명);
+		if (삭제됨 == 거짓) {
+			printf("\n없는 사람입니다.");
+		}
+		else {
+			printf("\n%s가 삭제되었습니다.", 성명);
+		}
+		printf("\n계속:y/n?");
+		rewind(stdin);
+		계속 = getchar();
+	}
+}
+
+void main() {
+
+	전화번호부시작();
+	진리형 계속 = 참;
+	while (계속) {		
+		printf("\n==메뉴===\n");
+		printf("1.등록 \n");
+		printf("2.삭제 \n");
+		printf("3.조회 \n");
+		printf("4.전화번호 목록 \n");
+		printf("5.종료 \n");
+		printf("메뉴를 선택:\n");
+		int 메뉴 = 0;
+		scanf("%d", &메뉴);
+		if (메뉴 == 1) { 메뉴등록하다(); }
+		else if (메뉴 == 2) { 메뉴삭제하다(); }
+		else if (메뉴 == 3) { 메뉴조회하다(); }
+		else if (메뉴 == 4) { 메뉴목록을출력하다(); }
+		else if (메뉴 == 5) { 
+			printf("~~~bye\n");
+			계속 = 거짓; 
+		}
+		else {
+			printf("없는 메뉴입니다 다시 입력하세요:\n");
+		}
+	}
+}
