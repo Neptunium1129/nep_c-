@@ -1,0 +1,29 @@
+//문자열 처리
+///문자열==문자의 1차원 배열 맨 마지막은 null문자로.
+#include <stdio.h>
+#include <string.h>
+typedef int 길이;
+길이 문자열길이구하다(char * s  ) {
+	int 길이 = 0;
+	while (*s != '\0') {
+		길이++;
+		s = s + 1;
+	}
+	return 길이;
+}
+//s[0], *(s+0
+
+void main() {
+	//배열초기화
+	char ss1[8] = "abcdefg";
+	char ss2[] = "abcdefg";
+	char ss3[8] = {'a','b','c','d','e','f','g','\0'};
+	int    a[3] = { 1,2,3 };
+
+	printf("%d \n", 문자열길이구하다(ss1) );
+	//size_t strlen(const char * str);
+
+	printf("%d \n", strlen(ss1)            );
+	getchar();
+
+}
