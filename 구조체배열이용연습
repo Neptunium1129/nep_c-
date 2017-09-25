@@ -1,0 +1,48 @@
+//구조체배열이용연습
+
+#include <stdio.h>
+#include <string.h>
+typedef struct 학생_ {
+	
+	int 번호;
+	char  성명[20];
+} 학생;
+
+학생 학생들[50];
+void 학생을초기화하다(학생* p대상학생) {
+	p대상학생->번호 = 0;
+	memset(p대상학생->성명, '\0',20);
+}
+void 학생기록하다(int 순서, int 번호, char *성명) {
+	학생을초기화하다(학생들 + 순서);//동일 &학생들[순서]
+	학생들[순서].번호 = 번호;
+	strcpy( 학생들[순서].성명, 성명);
+}
+
+void 목록출력() {
+	int 회 = 0;
+	for (회 = 0; 회 < 2; 회++) {
+		학생 *p학생 = 학생들 + 회;
+		printf("%d \t %d \t %s \n", 회+1, p학생->번호, p학생->성명);
+	}
+}
+void main() {
+	int 회 = 0;
+	while (회 < 2) {
+		int 입력번호 = 0;
+		char 입력성명[20];
+		memset(입력성명, '\0', 20);
+
+		printf("\n번호:");
+		fflush(stdin);
+		scanf("%d", &입력번호);
+		printf("\n성명:");
+		fflush(stdin);
+		scanf("%s", 입력성명);
+		학생기록하다(회, 입력번호, 입력성명);
+		회++;
+	}
+	목록출력();
+
+	getchar();
+}
