@@ -1,0 +1,22 @@
+//###집합적 영역수식은 그영역의 위치값으로 처리된다.
+//###집합적 영역 위치를 기준으로 이동시 하위단위(하위차수)의 영역크기로 이동되도록 처리된다
+
+
+#include <stdio.h>
+
+void main() {
+	int a[2][3] = { {1,2,3},{4,5,6} };
+	//###집한영역수식은 그영역의 위치값으로 처리된다.
+	printf("%u \n", a);
+	printf("%u \n", a + 0);
+	printf("%u \n", a + 1);
+	printf("%u \n", sizeof(a));
+	printf("%u \n", sizeof( *(a + 0)  )  );
+	printf("%u \n", sizeof(  a[0]       ));
+	printf("%u \n", *(*(a + 0) + 2)    );
+	printf("%u \n", *(a + 0)[2]        );
+	printf("%u \n", a[0][2]            );
+	printf("%u \n", *(a[0] + 2)        );
+	printf("%u \n", *(*a + 2));
+	getchar();
+}
