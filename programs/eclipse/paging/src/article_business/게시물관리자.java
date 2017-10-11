@@ -6,7 +6,7 @@ import java.util.List;
 import article_common.Article;
 
 public class 게시물관리자 {
-	int 총게시물수 = 34;
+	int 총게시물수 = 124;
 	public List<Article>게시물을수집하다(int 시작번호, int 갯수){
 		
 		List<Article> Articles = new ArrayList<Article>();
@@ -25,6 +25,9 @@ public class 게시물관리자 {
 	}
 	
 	public int 총게시물수를주다() {
+		
+		
+		
 		return 총게시물수;
 		
 		
