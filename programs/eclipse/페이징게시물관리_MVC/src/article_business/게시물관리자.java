@@ -7,9 +7,11 @@ import article_common.Article;
 
 public class 게시물관리자 {
 	int 총게시물수 = 133;
-
+	article_dataservice.게시물DAO 게시물DAO = new article_dataservice.게시물DAO();
 	public List<Article> 게시물을수집하다(int 시작번호, int 갯수) {
-
+		
+		//게시물DAO.모든게시물수집하다(시작번호, 갯수);
+		
 		List<Article> Articles = new ArrayList<Article>();
 		for (int i = 시작번호; i < 시작번호 + 갯수 && i < 총게시물수; i++) {
 
@@ -25,7 +27,7 @@ public class 게시물관리자 {
 	}
 
 	public int 총게시물수를주다() {
-
+		
 		return 총게시물수;
 
 	}
@@ -39,6 +41,11 @@ public class 게시물관리자 {
 		// Articles.add(Article);
 
 		return Article;
+	}
+	
+	public void 등록하다(Article 새게시물) {
+		System.out.println("등록성공");
+		
 	}
 
 }

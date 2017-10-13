@@ -32,12 +32,13 @@ a {
 
 			for (Article article : Articles) {
 		%>
-		<li><%=i++%>: <a href="view?vno=<%=article.getNo()%>"><%=article.getTitle()%></a></li>
+		<li><%=i++%>: <a href="view?vno=<%=article.getNo()%>&pno=<%=요청페이지번호 %>"><%=article.getTitle()%></a></li>
 		<%
 			}
 		%>
 		===============================================
 		<br>
+		<input type="button" value="새글쓰기" onclick="location.href='preparewrite'"/>
 		<%
 			int 총페이지개수 = 10;
 
@@ -104,8 +105,7 @@ location.replace("list?pno=1");
 		if (요청페이지번호 > 마지막페이지번호) {
 	%>
 	<script>
-location.replace("list?pno=<%=출력마지막페이지번호%>
-		");
+location.replace("list?pno=<%=출력마지막페이지번호%>");
 	</script>
 	<%
 		}
