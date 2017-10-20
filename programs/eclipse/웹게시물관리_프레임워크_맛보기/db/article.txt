@@ -1,0 +1,25 @@
+ \\////////////////////////
+ 
+    int no;
+   String title;
+   String contents;
+   Date date;
+   String writer;
+   int readedCount;
+   
+ create table article(
+  no int,
+  title varchar2(20),
+  contents varchar2(150),
+  wdate date default sysdate,
+  writer varchar2(10),
+  readedCount int default 0);
+  /////////////////////////////////
+  
+  create sequence sql_article
+  start with 1
+  increment by 1;
+  
+  
+  insert into article (no,title,contents,writer) values(sql_article.nextval,'앙기매리','내용sql_al','작성자');
+  

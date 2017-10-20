@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.celab.게시물관리.데이터서비스.게시물Mapper" >   
+    <insert id="저장하다" useGeneratedKeys="true"  keyProperty="no"  keyColumn="no"   parameterType="com.celab.articlemanage.common.Article" >
+        insert into article (title, contents) values ( #{title}, #{contents} )
+    </insert>   
+    <select id="읽다_게시물By게시물번호"  parameterType="long"  resultType="com.celab.articlemanage.common.Article" >
+    	   select * from article where no=#{게시물번호}
+    </select>
+    <select id="읽다_모든게시물들"  resultType="com.celab.articlemanage.common.Article" >
+    	    select * from article
+    </select>
+</mapper>
