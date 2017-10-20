@@ -15,7 +15,6 @@ public class 게시물관리자 {
 	@Autowired
 	게시물DAO 게시물DAO;
 	
-	int 총게시물수 = 133;
 	public List<Article> 게시물을수집하다(int 시작번호, int 갯수) {
 		
 		//게시물DAO.모든게시물수집하다(시작번호, 갯수);

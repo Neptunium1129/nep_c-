@@ -140,11 +140,12 @@ public class 게시물DAO {
 			
 			while(게시물행.next()) {
 				
-				int 번호 = 게시물행.getInt("번호");
-				String 제목 = 게시물행.getString("제목");
-				String 내용  = 게시물행.getString("내용");
-				String 작성자  = 게시물행.getString("작성자");
-				Date 날짜  = 게시물행.getDate("작성일자");
+				int 번호 = 게시물행.getInt("no");
+				String 제목 = 게시물행.getString("title");
+				String 내용  = 게시물행.getString("contents");
+				String 작성자  = 게시물행.getString("writer");
+				Date 날짜  = 게시물행.getDate("wdate");
+				int 조회수 = 게시물행.getInt("readedcount");
 				
 				
 				찾은게시물 = new Article();
@@ -153,7 +154,8 @@ public class 게시물DAO {
 				찾은게시물.setContents(내용);
 				찾은게시물.setWriter(작성자);
 				찾은게시물.setDate(날짜);
-				
+				찾은게시물.setReadedCount(조회수);
+				System.out.println(제목);
 				
 			}
 		
