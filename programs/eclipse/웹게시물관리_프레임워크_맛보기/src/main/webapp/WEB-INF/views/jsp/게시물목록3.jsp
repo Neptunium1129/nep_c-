@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@page import="java.util.List"%>
 <%@page import="com.celab.article_common.Article"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,7 +6,6 @@
 
 <%
 
-//String log_check = (String)request.getAttribute("log_check");
 %>
 
 
@@ -13,6 +13,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Canvas</title>
 <style type="text/css">
     body{
@@ -39,7 +42,7 @@
         line-height:30px;
 }
 
-    #ulTable {margin-top:10px;}
+    #ulTable {margin-top:10px; width:100%;}
     
 
     #ulTable > li:first-child > ul > li {
@@ -100,10 +103,13 @@
 </head>
 <body>
     <div id="mainWrapper">
+    <a class="btn btn-warning" href="로그아웃">로그아웃</a>
+    <a class="btn btn-info" href="main">main</a>
     <%
 	List<Article> Articles = (List<Article>) request.getAttribute("Articles");
 	int 총게시물수 = (Integer) request.getAttribute("총게시물수");
 	int 요청페이지번호 = (Integer) request.getAttribute("요청페이지번호");
+	
 %>
         <ul>
             <!-- 게시판 제목 -->
@@ -114,8 +120,8 @@
                 MVC 게시판 
                 <%
 			int 페이지당게시물수 = 10;
-			int 시작번호 = (요청페이지번호 - 1) * 페이지당게시물수 + 1;
-			int i = 시작번호;
+		//	int 시작번호 = ((요청페이지번호)-1) * 페이지당게시물수 + 총게시물수;
+			int i = 총게시물수;
 
 
 		%>
@@ -136,11 +142,11 @@
 				
 				     <li>
                         <ul>
-                            <li><%=i++%></li>
+                            <li><%=article.getNo()%></li>
                             <li class="left"><a href="view?vno=<%=article.getNo()%>&pno=<%=요청페이지번호 %>"><%=article.getTitle()%></a></li>
-                            <li>미구현</li>
-                            <li>미구현</li>
-                            <li>미구현</li>
+                            <li><%=article.getDate() %></li>
+                            <li><%=article.getMember().getId() %></li>
+                            <li>0</li>
                         </ul>
                     </li> 
 				
@@ -167,22 +173,24 @@
    %>
    		
 		  
-		  
+			 
              <li>
-                <div id="divPaging">  
-           
-             <%
+   
+                	
+		
+            </li>
+            		   <%
 			if (요청페이지번호 != 1) {
 		   %>
-		    <a href="list?pno=1">F</a>
-		<a href="list?pno=<%=출력시작페이지번호 - 총페이지개수%>"> ◀◀ </a> 
-			 <a href="list?pno=<%=prevPage%>">◀</a>
+		    <a href="list?pno=1">F|</a>
+		<a href="list?pno=<%=((출력시작페이지번호 - 총페이지개수)<1?1:출력시작페이지번호 - 총페이지개수)%>">◀◀|</a> 
+			 <a href="list?pno=<%=prevPage%>">◀|</a>
 		   
 			<%
 			//페이지이동 
 			}
 			%>
-			
+			        
 			
                 <%
 			for (int 페이지번호 = 출력시작페이지번호; 페이지번호 <= 출력마지막페이지번호; 페이지번호++) {
@@ -192,35 +200,30 @@
 				 
 	
 	    <%	if (요청페이지번호 == 페이지번호) { %>
-	      <div><b><a href="list?pno=<%=페이지번호%>"> 	<%=페이지번호%></b>   </a></div>
+	      <b><a href="list?pno=<%=페이지번호%>"> 	<%=페이지번호%></b>   </a>
 	     <% }else { %>
-	       <div><a href="list?pno=<%=페이지번호%>"><%=페이지번호 %></a></div>
+	       <a href="list?pno=<%=페이지번호%>"><%=페이지번호 %></a>
 	     <% } %>	
 
                     
                <%
 		    	}
 				%>
-				
-					<%
+              
+            			<%
 			if (요청페이지번호 != 마지막페이지번호) {
 		%>
 
-			<a href="list?pno=<%=nextPage%>">▶</a>
-			 <a href="list?pno=<%=출력마지막페이지번호 + 1%>">▶▶</a>
-			<a href="list?pno=<%=마지막페이지번호%>">E</a>
+			<a href="list?pno=<%=nextPage%>">|▶</a>
+			 <a href="list?pno=<%=출력마지막페이지번호 + 1%>">|▶▶</a>
+			<a href="list?pno=<%=마지막페이지번호%>">|E</a>
 		<%
 			}
 		%>
-                </div>
-                	
-		
-            </li>
             
             
-            
-            <input type="button" value="새글쓰기" onclick="location.href='preparewrite'"/>
-            
+           <br> <input class="btn btn-success" type="button" value="새글쓰기" onclick="location.href='preparewrite'"/>
+     
 
             <!-- 검색 폼 영역 -->
             <li id='liSearchOption'>
@@ -231,15 +234,29 @@
                         <option value='C'>내용</option>
                     </select>
                     <input id='txtKeyWord' />
-                    <input type='button' value='검색'/>
+                    <input type='button' value=''/>
                 </div>
                 </li>
 
         </ul>
     </div>
-    <script type="text/javascript">
-
+   <% 
+    Boolean test = (Boolean)request.getAttribute("test");
     
-    </script>
+    %>
+
+
+<script type="text/javascript">
+var test= <%=test %>;
+if(test==true){
+	console.log("참");
+}else{
+	console.log("거짓");
+}
+
+
+</script>
+
+   
 </body>
 </html>

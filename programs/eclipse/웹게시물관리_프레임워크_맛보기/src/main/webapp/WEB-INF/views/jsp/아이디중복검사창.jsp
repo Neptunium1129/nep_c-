@@ -58,7 +58,7 @@ $(document).ready(function(){
 	
 	$("#btnid사용").attr("disabled","true");
 	<% if(ID사용가능여부!=null) { %>
-	var id사용가능 = <%=(ID사용가능여부)?"true":"false"%>;
+	var id사용가능 = <%=(ID사용가능여부)?"false":"true"%>;
 	if(id사용가능){
 		$("#check_id").val("<%= ID %>").on("change",function(){
 			$("#message").text("");

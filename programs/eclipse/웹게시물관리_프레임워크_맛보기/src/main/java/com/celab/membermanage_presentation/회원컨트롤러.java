@@ -19,11 +19,19 @@ public class 회원컨트롤러 {
 	}
 	@RequestMapping("회원등록")
 	public ModelAndView 회원등록하다(Member 회원) {
-		회원관리자.회원등록하다(회원);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("name",회원.getName());
-		mv.addObject("email",회원.getEmail());
-		mv.setViewName("redirect:welcome");
+		int 결과 = 회원관리자.회원등록하다(회원);
+		if(결과==1) {
+			
+			mv.addObject("name",회원.getName());
+			mv.addObject("email",회원.getEmail());
+			mv.setViewName("redirect:welcome");
+		}else {
+			
+
+			mv.setViewName("redirect:main");
+			
+		}
 
 		return mv;
 	}

@@ -21,5 +21,5 @@
   increment by 1;
   
   
-  insert into article (no,title,contents,writer) values(sql_article.nextval,'앙기매리','내용sql_al','작성자');
+  insert into article (no,title,contents,member_no) values(sql_article.nextval,'앙기매리','내용sql_al','작성자');
   

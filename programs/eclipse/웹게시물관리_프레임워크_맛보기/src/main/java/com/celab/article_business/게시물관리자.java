@@ -52,4 +52,10 @@ public class 게시물관리자 {
 		
 	}
 
+	public boolean 게시물삭제하다(String no) {
+		
+		
+		return 게시물DAO.게시물삭제하다(no);
+	}
+
 }

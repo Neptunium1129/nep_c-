@@ -18,7 +18,16 @@ public class 로그인인터셉터 implements HandlerInterceptor {
 		if(path.equals("/main") ||
 				path.equals("/로그인하다")||
 				path.equals("/로그아웃")||
-				path.equals("/로그인준비")) {  
+				path.equals("/회원등록준비")||
+				path.equals("/로그인준비")||
+				path.equals("/주소조회준비")||
+				path.equals("/주소조회")||
+				path.equals("/아이디중복검사")||
+				path.equals("/회원등록")||
+				path.equals("/welcome")||
+				path.equals("/아이디중복검사준비")
+				
+				) {  
 			        return true;
 		}
 		System.out.println("인터셉터");

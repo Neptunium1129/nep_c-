@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.celab.article_business.게시물관리자;
+import com.celab.membermanage_business.회원관리자;
+import com.celab.membermanage_common.Member;
 import com.celab.article_common.Article;
 
 
@@ -21,7 +23,9 @@ public class 게시물컨트롤러{
 	
 	@Autowired
 	게시물관리자 한게시물관리자;
-	
+
+	@Autowired
+	회원관리자 회원관리자;
 	
 	@RequestMapping("list")
 	public ModelAndView 목록을출력하다(HttpServletRequest request, HttpServletResponse response,HttpSession session) {
@@ -60,16 +64,18 @@ public class 게시물컨트롤러{
 		
 		
 		@RequestMapping("view")
-		public ModelAndView 상세출력하다(HttpServletRequest request, HttpServletResponse response) {
-			String str게시물번호 = request.getParameter("vno");
-			int 게시물번호 = Integer.valueOf(str게시물번호);
+		public ModelAndView 상세출력하다(@RequestParam("vno") int 게시물번호,HttpSession session) {
+		//	String str게시물번호 = request.getParameter("vno");
+		//	int 게시물번호 = Integer.valueOf(str게시물번호);
 			//String str페이지번호 =  request.getParameter("pno");
-			Article anarticle = 한게시물관리자.조회하다게시물By번호(게시물번호);
-
+			Article 게시물 = 한게시물관리자.조회하다게시물By번호(게시물번호);
+			String uid= (String)session.getAttribute("ID");
+			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("게시물상세");
 
-			mv.addObject("anarticle", anarticle);
+			mv.addObject("anarticle", 게시물);
+			mv.addObject("deletable", 게시물.getMember().getId().equals(uid)?true:false);
 			//mv.addObject("pno", Integer.valueOf(str페이지번호));
 			return mv;
 			
@@ -77,82 +83,22 @@ public class 게시물컨트롤러{
 	}
 	
 		
-		@RequestMapping("write")
-		public ModelAndView 글등록하다(HttpServletRequest request, HttpServletResponse response) {
-			
-			String 제목 = request.getParameter("title");
-			String 내용 = request.getParameter("contents");
-			String 작성자 = request.getParameter("writer");
-			
-			Article 새게시물 = new Article();
-			새게시물.setTitle(제목);
-			새게시물.setContents(내용);
-			새게시물.setWriter(작성자);
-			한게시물관리자.등록하다(새게시물);
 
-
-			ModelAndView mv = new ModelAndView();
-			//mv.setViewName("등록테스트.jsp");//forward:list
-			//\mv.addObject("title", 제목);
-			mv.setViewName("redirect:list");
-			return mv;
-
-		}
-		
-		@RequestMapping("write2")
-		public ModelAndView 글등록하다2(@RequestParam("title")String 제목,
-									@RequestParam("contents")String 내용,
-									@RequestParam("writer")String 작성자) {
-			                     //만든놈이 이렇게하라고함
-			
-
-			Article 새게시물 = new Article();
-			새게시물.setTitle(제목);
-			새게시물.setContents(내용);
-			새게시물.setWriter(작성자);
-			한게시물관리자.등록하다(새게시물);
-
-
-			ModelAndView mv = new ModelAndView();
-			//mv.setViewName("등록테스트.jsp");//forward:list
-			//\mv.addObject("title", 제목);
-			mv.setViewName("redirect:list");
-			return mv;
-
-		}
-		
-		
-		@RequestMapping("write3")
-		public ModelAndView 글등록하다3(Article 새게시물) {
-			                     //만든놈이 이렇게하라고함
-			
-
-		/*	Article 새게시물 = new Article();
-			새게시물.setTitle(제목);
-			새게시물.setContents(내용);
-			새게시물.setWriter(작성자);
-			한게시물관리자.등록하다(새게시물);*/
-
-			한게시물관리자.등록하다(새게시물);
-			ModelAndView mv = new ModelAndView();
-			//mv.setViewName("등록테스트.jsp");//forward:list
-			//\mv.addObject("title", 제목);
-			mv.setViewName("redirect:list");
-			return mv;
-
-		}
 		
 		@RequestMapping("write4")
-		public String 글등록하다4(Article 새게시물) {
+		public ModelAndView 글등록하다4(Article 새게시물,HttpSession session) {
 			                     //만든놈이 이렇게하라고함
 			
 
-	
-
+			String uid = (String)session.getAttribute("ID");
+			Member member = 회원관리자.조회하다회원By아이디(uid);
+			새게시물.setMember(member);
+		System.out.println(member.getName());
+			
 			한게시물관리자.등록하다(새게시물);
 			ModelAndView mv = new ModelAndView();
-			
-			return "redirect:list";
+			mv.setViewName("redirect:list");
+			return mv;
 
 		}
 		
@@ -168,6 +114,21 @@ public class 게시물컨트롤러{
 
 		
 			//mv.addObject("pno", Integer.valueOf(str페이지번호));
+			return mv;
+
+		}
+
+		@RequestMapping("delete")
+		public ModelAndView 게시물삭제하다(HttpServletRequest request,@RequestParam("no") String no) {
+			
+			boolean 결과 = 한게시물관리자.게시물삭제하다(no);
+		
+			//mv.addObject("pno", Integer.valueOf(str페이지번호));
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("게시물삭제");
+			mv.addObject("check", (결과));
+		
+			
 			return mv;
 
 		}

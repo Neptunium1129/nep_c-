@@ -1,5 +1,6 @@
 package com.celab.loginmanage_presentation;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,27 +14,26 @@ import com.celab.membermanage_business.회원관리자;
 @Controller
 public class 로그인컨트롤러 {
 @Autowired 회원관리자 회원관리자;
-	@RequestMapping("로그인준비")
+	@RequestMapping("ready")
 	public String 로그인준비하다() {
 		
 			return "로그인창";
 		
 	
 	}
-	
+
 	
 	@RequestMapping("로그인하다")
-	public String 로그인하다(@RequestParam("ID")String ID, @RequestParam("Password")String Password, HttpSession session) {
-		
+	public ModelAndView 로그인하다(@RequestParam("ID")String ID, @RequestParam("Password")String Password, HttpSession session, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
 		if(회원관리자.존재하는가(ID, Password)) {
 			session.setAttribute("ID", ID);
-			return "redirect:main";
+			mv.setViewName("redirect:main");
 		}else {
-			
-			return "로그인창";
+			mv.addObject("check",false);
+			mv.setViewName("ready");		
 		}
-	
-
+		return mv;
 		
 	}
 		

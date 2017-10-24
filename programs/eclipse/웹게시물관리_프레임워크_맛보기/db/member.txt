@@ -1,0 +1,53 @@
+ *    int no;
+   String title;
+   String contents;
+   Date date;
+   String writer;
+   int readedCount;
+   
+  create table article(
+  no int,
+  title varchar2(20),
+  contents varchar2(150),
+  wdate date default sysdate,
+  member_no int,
+  readedCount int default 0);
+  
+  
+  /////////////////////
+  
+  
+  
+  
+ create table board_member(
+  no int,
+  name varchar2(20),
+  telephone varchar2(20),
+  zipcode char(5),
+  zipaddress varchar2(20),
+  detailaddress varchar2(20),
+  id varchar2(20),
+  password varchar2(20),
+  hobby varchar2(20),
+  email  varchar2(20)
+  );
+  
+  CREATE TABLE TABLE2 
+(
+  COLUMN1 VARCHAR2(20) NOT NULL 
+, COLUMN2 VARCHAR2(20) 
+, CONSTRAINT TABLE2_PK PRIMARY KEY 
+  (
+    COLUMN1 
+  )
+  ENABLE 
+);
+  
+  
+  
+    create sequence sql_member
+  start with 1
+  increment by 1;
+  
+    insert into article (no,title,contents,writer) values(sql_member,'강승민','01055372206','작성자');
+  

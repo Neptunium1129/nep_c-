@@ -2,8 +2,25 @@ package com.celab.article_common;
 
 import java.util.Date;
 
+import com.celab.membermanage_common.Member;
+
 public class Article {
-   
+	  int no;
+	   String title;
+	   String contents;
+	   Date date;
+	   Member member;
+		int readedCount;
+		
+		
+	   public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	   
    public int getNo() {
       return no;
    }
@@ -28,24 +45,14 @@ public class Article {
    public void setDate(Date date) {
       this.date = date;
    }
-   public String getWriter() {
-      return writer;
-   }
-   public void setWriter(String writer) {
-      this.writer = writer;
-   }
+
    public int getReadedCount() {
       return readedCount;
    }
    public void setReadedCount(int readedCount) {
       this.readedCount = readedCount;
    }
-   int no;
-   String title;
-   String contents;
-   Date date;
-   String writer;
-   int readedCount;
+ 
    
 
 }

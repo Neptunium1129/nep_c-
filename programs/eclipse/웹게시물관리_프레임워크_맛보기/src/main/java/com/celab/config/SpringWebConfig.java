@@ -20,7 +20,9 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
+		registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 	}
 	
 	@Bean
@@ -31,6 +33,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
+
 
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
