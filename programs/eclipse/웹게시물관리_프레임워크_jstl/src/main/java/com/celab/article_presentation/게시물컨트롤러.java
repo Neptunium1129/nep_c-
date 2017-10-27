@@ -53,9 +53,10 @@ public class 게시물컨트롤러{
 	
 		
 		mv.addObject("Articles", Articles);
+		mv.addObject("총게시물수", 총게시물수);
+		mv.addObject("요청페이지번호", 요청페이지번호);
 		mv.addObject("pno", 요청페이지번호);
 		mv.addObject("totalArticleCount", 총게시물수);
-
 		return mv;
 		
 	}

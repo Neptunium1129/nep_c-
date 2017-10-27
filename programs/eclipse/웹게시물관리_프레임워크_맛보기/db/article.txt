@@ -22,4 +22,34 @@
   
   
   insert into article (no,title,contents,member_no) values(sql_article.nextval,'앙기매리','내용sql_al','작성자');
+     
+ create table daerim(
+  no int,
+  title varchar2(50),
+  contents varchar2(150),
+  makeday varchar2(50),
+  writer varchar2(30),
+  price varchar2(30),
+  img varchar2(30));
   
+    create sequence sql_daerim
+  start with 1
+  increment by 1;
+  
+    insert into daerim (no,title,contents,makeday,writer,price,img) values(sql_daerim.nextval,'집에서 뚝딱 만드는 쇼핑몰','쇼핑몰 만드는책','2012년 5월 15일','착한연구소','15000원','쇼핑몰사진.jpg');
+  
+	int no;
+	String title;
+	String writer;
+	String makeday;
+	String price;
+	String contents;
+	String img;
+	
+	
+	     
+ create table d_comment(
+  c_id int,
+  p_id int,
+  c_writer varchar2(50),
+  c_contents varchar2(150));

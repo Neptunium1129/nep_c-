@@ -25,8 +25,7 @@ public class 로그인인터셉터 implements HandlerInterceptor {
 				path.equals("/아이디중복검사")||
 				path.equals("/회원등록")||
 				path.equals("/welcome")||
-				path.equals("/아이디중복검사준비")||
-				path.equals("/daerim_view")
+				path.equals("/아이디중복검사준비")
 				
 				) {  
 			        return true;
